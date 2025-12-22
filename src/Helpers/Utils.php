@@ -66,24 +66,36 @@ abstract class Utils
     public static function post_data_to_url(string $url, array $payload, ?string $bearerToken = null): array
     {
         $postData = json_encode($payload);
+
+        // Optionally get API key from environment
+        $apiKey = $_ENV['BAKONG_PROXY_API_KEY'] ?? getenv('BAKONG_PROXY_API_KEY');
+
         // Set up cURL
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-        if (isset($bearerToken)) {
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Authorization: Bearer '.$bearerToken,
-            ]);
-        } else {
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-            ]);
+
+        // Build headers
+        $headers = ['Content-Type: application/json'];
+
+        if (!empty($bearerToken)) {
+            $headers[] = 'Authorization: Bearer ' . $bearerToken;
         }
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Max execution time in seconds
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); // Stops if the connection cannot be established in 10s
+
+        // Add API key only if it exists
+        if (!empty($apiKey)) {
+            $headers[] = 'X-API-KEY: ' . $apiKey;
+        }
+
+        // Apply headers
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        // Timeout settings
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+
 
         // Execute request
         $response = curl_exec($ch);
