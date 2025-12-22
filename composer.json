@@ -1,10 +1,12 @@
 {
-    "name": "khqr-gateway/bakong-khqr-php",
-    "description": "A pure PHP implementation of the Bakong KHQR SDK",
+    "name": "sokeng/khqr-gateway",
+    "description": "Fork of khqr-gateway/bakong-khqr-php",
     "type": "library",
     "keywords": [
         "bakong",
-        "khqr"
+        "khqr",
+        "fork",
+        "sokeng"
     ],
     "license": "MIT",
     "authors": [
@@ -12,18 +14,19 @@
             "name": "Force Fidele KIEN",
             "email": "forcefidele@gmail.com",
             "homepage": "https://fidele007.github.io",
-            "role": "Developer"
+            "role": "Original Author"
+        },
+        {
+            "name": "Sokeng Vorn",
+            "email": "sokengv@gmail.com",
+            "homepage": "https://github.com/sokengv",
+            "role": "Fork Maintainer / Contributor"
         }
     ],
     "support": {
-        "issues": "https://github.com/fidele007/bakong-khqr-php/issues"
+        "issues": "https://github.com/sokengv/khqr-gateway/issues",
+        "source": "https://github.com/sokengv/khqr-gateway"
     },
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://www.github.com/sponsors/fidele007"
-        }
-    ],
     "require": {
         "php": ">=7.4"
     },
