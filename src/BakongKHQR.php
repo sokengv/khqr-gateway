@@ -201,7 +201,7 @@ class BakongKHQR
 
     public static function generateDeepLink(string $qr, ?SourceInfo $sourceInfo, bool $isTest = false): KHQRResponse
     {
-        $url = $isTest ? Constants::SIT_DEEPLINK_URL : Constants::DEEPLINK_URL;
+        $url = $isTest ? Constants::sitDeepLinkUrl() : Constants::deepLinkUrl();
 
         return self::generateDeepLinkWithUrl($url, $qr, $sourceInfo);
     }
@@ -215,7 +215,7 @@ class BakongKHQR
 
     public static function checkBakongAccount(string $bakongID, bool $isTest = false): \KHQR\Models\KHQRResponse
     {
-        $url = $isTest ? Constants::SIT_ACCOUNT_URL : Constants::ACCOUNT_URL;
+        $url = $isTest ? Constants::sitAccountUrl() : Constants::accountUrl();
 
         return self::checkBakongAccountWithUrl($url, $bakongID);
     }

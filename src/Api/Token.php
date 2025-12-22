@@ -18,7 +18,7 @@ class Token
             throw new \InvalidArgumentException('Invalid email address');
         }
 
-        $url = $isTest ? Constants::SIT_RENEW_TOKEN_URL : Constants::RENEW_TOKEN_URL;
+        $url = $isTest ? Constants::sitRenewTokenUrl() : Constants::renewTokenUrl();
 
         return Utils::post_data_to_url($url, ['email' => $email]);
     }

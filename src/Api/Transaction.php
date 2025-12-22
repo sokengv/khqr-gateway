@@ -18,7 +18,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and MD5 cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_MD5_URL : Constants::CHECK_TRANSACTION_MD5_URL;
+        $url = $isTest ? Constants::sitCheckTransactionMd5Url() : Constants::checkTransactionMd5Url();
 
         return Utils::post_data_to_url($url, ['md5' => $md5], $token);
     }
@@ -33,7 +33,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and MD5 array cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_MD5_LIST_URL : Constants::CHECK_TRANSACTION_MD5_LIST_URL;
+        $url = $isTest ? Constants::sitCheckTransactionMd5ListUrl() : Constants::checkTransactionMd5ListUrl();
 
         return Utils::post_data_to_url($url, $md5Array, $token);
     }
@@ -47,7 +47,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and Hash cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_FULL_HASH_URL : Constants::CHECK_TRANSACTION_FULL_HASH_URL;
+        $url = $isTest ? Constants::sitCheckTransactionFullHashUrl() : Constants::checkTransactionFullHashUrl();
 
         return Utils::post_data_to_url($url, ['hash' => $fullHash], $token);
     }
@@ -62,7 +62,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and Hash array cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_FULL_HASH_LIST_URL : Constants::CHECK_TRANSACTION_FULL_HASH_LIST_URL;
+        $url = $isTest ? Constants::sitCheckTransactionFullHashListUrl() : Constants::checkTransactionFullHashListUrl();
 
         return Utils::post_data_to_url($url, $fullHashArray, $token);
     }
@@ -76,7 +76,7 @@ class Transaction
             throw new \InvalidArgumentException('Token, hash, amount and currency cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_SHORT_HASH_URL : Constants::CHECK_TRANSACTION_SHORT_HASH_URL;
+        $url = $isTest ? Constants::sitCheckTransactionShortHashUrl() : Constants::checkTransactionShortHashUrl();
 
         return Utils::post_data_to_url($url, ['hash' => $hash, 'amount' => $amount, 'currency' => $currency], $token);
     }
@@ -90,7 +90,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and Reference cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_INSTRUCTION_REF_URL : Constants::CHECK_TRANSACTION_INSTRUCTION_REF_URL;
+        $url = $isTest ? Constants::sitCheckTransactionInstructionRefUrl() : Constants::checkTransactionInstructionRefUrl();
 
         return Utils::post_data_to_url($url, ['instructionRef' => $ref], $token);
     }
@@ -104,7 +104,7 @@ class Transaction
             throw new \InvalidArgumentException('Token and Reference cannot be blank');
         }
 
-        $url = $isTest ? Constants::SIT_CHECK_TRANSACTION_EXTERNAL_REF_URL : Constants::CHECK_TRANSACTION_EXTERNAL_REF_URL;
+        $url = $isTest ? Constants::sitCheckTransactionExternalRefUrl() : Constants::checkTransactionExternalRefUrl();
 
         return Utils::post_data_to_url($url, ['externalRef' => $ref], $token);
     }

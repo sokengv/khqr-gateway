@@ -65,17 +65,10 @@ abstract class Utils
 
     public static function post_data_to_url(string $url, array $payload, ?string $bearerToken = null): array
     {
-        $postData = json_encode($payload);
 
+        
         // Optionally get API key from environment
         $apiKey = $_ENV['BAKONG_PROXY_API_KEY'] ?? getenv('BAKONG_PROXY_API_KEY');
-
-        // Set up cURL
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
         // Build headers
         $headers = ['Content-Type: application/json'];
@@ -86,8 +79,22 @@ abstract class Utils
 
         // Add API key only if it exists
         if (!empty($apiKey)) {
-            $headers[] = 'X-API-KEY: ' . $apiKey;
+            $headers[] = 'api-key: ' . $apiKey;
+            $payload['token'] = $bearerToken;
+            
         }
+
+        $postData = json_encode($payload);
+
+
+        // Set up cURL
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+        
 
         // Apply headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -102,7 +109,7 @@ abstract class Utils
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $error = curl_error($ch);
         $error_code = curl_errno($ch);
-        curl_close($ch);
+        curl_close(handle: $ch);
 
         if ($error_code === CURLE_OPERATION_TIMEDOUT) {
             throw new KHQRException(KHQRException::CONNECTION_TIMEOUT);
