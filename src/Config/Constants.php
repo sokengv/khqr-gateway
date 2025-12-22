@@ -6,7 +6,7 @@ namespace KHQR\Config;
 
 class Constants
 {
-    const BAKONG_API_BASE_URL = $_ENV['BAKONG_API_BASE_URL'] ?? 'https://api-bakong.nbc.gov.kh';; // For production
+    const BAKONG_API_BASE_URL = $_ENV['BAKONG_API_BASE_URL'] ?? 'https://api-bakong.nbc.gov.kh'; // For production
 
     const BAKONG_API_SIT_BASE_URL = $_ENV['BAKONG_API_SIT_BASE_URL'] ?? 'https://sit-api-bakong.nbc.gov.kh'; // For testing
 
