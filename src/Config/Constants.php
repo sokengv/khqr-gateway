@@ -25,6 +25,8 @@ class Constants
             ?? getenv('BAKONG_API_SIT_BASE_URL') 
             ?? 'https://sit-api-bakong.nbc.gov.kh';
     }
+    
+    public static function isProxyEnabled(): bool { return $_ENV['BAKONG_API_PROXY_ENABLED'] ?? getenv('BAKONG_API_PROXY_ENABLED') ?? false; }
 
     // -------- Production URLs --------
     public static function accountUrl(): string { return self::baseUrl() . '/v1/check_bakong_account'; }

@@ -35,6 +35,10 @@ class Transaction
 
         $url = $isTest ? Constants::sitCheckTransactionMd5ListUrl() : Constants::checkTransactionMd5ListUrl();
 
+        if(Constants::isProxyEnabled()) {
+            $md5Array['md5'] = $md5Array;
+        }
+
         return Utils::post_data_to_url($url, $md5Array, $token);
     }
 
