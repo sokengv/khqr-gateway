@@ -116,7 +116,7 @@ abstract class Utils
         }
 
         // Check for errors
-        if ($response === false || $httpCode != 200) {
+        if ($response === false) {
             if (! self::isBlank($error)) {
                 throw new KHQRException($error, $httpCode);
             }
